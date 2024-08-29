@@ -68,7 +68,7 @@ def transcribe2(audio_file):
         tail = "audio.wav"
         print("before diarize") 
         #os.system(f"insanely-fast-whisper --file-name {tail} --hf_token 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 --flash True")
-        subprocess.run([f"insanely-fast-whisper --file-name {tail} --diarization_model --hf_token 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 --flash True"], shell=True, capture_output=True, text=True)
+        subprocess.run([f"insanely-fast-whisper --file-name {tail} --diarization_model --hf_token hf_XXXXXXXX --flash True"], shell=True, capture_output=True, text=True)
         print("after diarize")
         subprocess.run(["python cleanup.py"], shell=True, capture_output=True, text=True)
 
