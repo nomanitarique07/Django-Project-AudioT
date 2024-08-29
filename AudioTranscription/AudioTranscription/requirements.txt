@@ -1,0 +1,4 @@
+transformers
+pytube
+torch -f https://download.pytorch.org/whl/torch_stable.html
+accelerate

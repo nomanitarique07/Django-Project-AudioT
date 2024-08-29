@@ -1,0 +1,57 @@
+<!-- {% load static %} -->
+{% include "header.html" %}
+<div class="container" id="feature3">
+    <h2></h2>
+    <button id="recordButton" onclick="toggleRecording()">Start Recording</button>
+    <p id="status">Status: Stopped</p>
+</div>
+<script>
+    let isRecording = false;
+    let recorder;
+
+    async function toggleRecording() {
+        if (!isRecording) {
+            startRecording();
+        } else {
+            stopRecording();
+        }
+    }
+
+    async function startRecording() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            recorder = new MediaRecorder(stream);
+            const chunks = [];
+
+            recorder.ondataavailable = (e) => {
+                chunks.push(e.data);
+            };
+
+            recorder.onstop = (e) => {
+                const blob = new Blob(chunks, { type: 'audio/webm' });
+                const url = URL.createObjectURL(blob);
+                const audio = new Audio(url);
+                audio.controls = true;
+                document.getElementById('feature3').appendChild(audio);
+            };
+
+            recorder.start();
+            document.getElementById('recordButton').innerText = 'Stop Recording';
+            document.getElementById('status').innerText = 'Status: Recording';
+            isRecording = true;
+        } catch (err) {
+            console.error('Error starting recording:', err);
+        }
+    }
+
+    function stopRecording() {
+        if (recorder && recorder.state !== 'inactive') {
+            recorder.stop();
+            document.getElementById('recordButton').innerText = 'Start Recording';
+            document.getElementById('status').innerText = 'Status: Stopped';
+            isRecording = false;
+        }
+    }
+</script>
+
+{% include "footer.html" %}

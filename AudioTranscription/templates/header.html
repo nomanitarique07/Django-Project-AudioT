@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Transcription Application</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Audio Transcription Application</h1>
+        
+        <div class="tabs">
+            <div class="tab active" id="home">
+                <a href="{% url 'hm' %}" onclick="showFeature('home_feature', 'home'); return false;"><img src="/static/images/home_icon.png" alt="Home"></a>
+                
+            </div>
+            <div class="tab" id="tab1">
+                <a href="{% url 'yt' %}" onclick="showFeature('feature1', 'tab1'); return false;"><h2>Youtube Transcription</h2></a>
+                
+            </div>
+            <div class="tab" id="tab2">
+                <a href="{% url 'af' %}" onclick="showFeature('feature2', 'tab2'); return false;"><h2>Audio File Transcription</h2></a>
+            
+            </div>
+            <div class="tab" id="tab3">
+                <a href="{% url 'rt' %}" onclick="showFeature('feature3', 'tab3'); return false;"><h2>Real Time</h2></a>
+                
+            </div>
+        </div>
+    </header>
+
+    <script>
+        function showFeature(featureId, tabId) {
+            var features = document.querySelectorAll('.container');
+            features.forEach(feature => {
+                feature.style.display = 'none';
+            });
+            document.getElementById(featureId).style.display = 'block';
+
+            var tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        document.getElementById('home_feature').style.display = 'block';
+        document.getElementById('home').classList.add('active');
+    </script>
+

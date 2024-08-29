@@ -1,0 +1,34 @@
+{% include "header.html" %}
+
+    <div class="container" id="home_feature">
+        <h2>ASK ME ANYTHING!</h2>
+        <form action="#" method="post">
+            {% csrf_token %}
+            <input type="text" name="userquery" id="userquery" placeholder="Ask your GPT">
+            <input type="submit" value="ASK">
+        </form>
+        <div style="margin-top: 10px; margin-bottom: 5px;">{{response}}</div>
+    </div>
+  
+
+    <script>
+        function showFeature(featureId, tabId) {
+            var features = document.querySelectorAll('.container');
+            features.forEach(feature => {
+                feature.style.display = 'none';
+            });
+            document.getElementById(featureId).style.display = 'block';
+
+            var tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        
+    </script>
+
+{% include "footer.html" %}
+
+

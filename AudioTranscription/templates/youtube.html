@@ -1,0 +1,15 @@
+<!-- {% load static %} -->
+{% include "header.html" %}
+<div class="container" id="feature1">
+    <h2></h2>
+    <form action="#" method="post">
+        {% csrf_token %}
+        <input type="text" name="audioInput" id="audioInput" placeholder="Enter audio URL or upload file">
+        <input type="submit" value="Submit">
+    </form>
+    <!-- <h2>Output: </h2> -->
+    <!-- <div>{{ start_time }} - {{ end_time }}</div> -->
+    <div style="margin-top: 10px; margin-bottom: 5px;">{{transcription}}</div>
+</div>
+
+{% include "footer.html" %}
